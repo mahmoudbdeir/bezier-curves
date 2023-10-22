@@ -57,8 +57,11 @@ public partial class Form1 : Form
     {
         InitializeComponent();
         this.BackColor = Color.Black;
-        MakeButton("Draw Lines", this.DrawLines_Click, 10, 10);
+        MakeButton("Bezier", this.DrawLines_Click, 10, 10);
         MakeButton("Clear", this.Clear_Click, 10, 40);
+        MakeButton("Exit", this.Exit_Click, 10, 70);
+        this.WindowState = FormWindowState.Maximized;
+        this.FormBorderStyle = FormBorderStyle.None;
     }
     private Button MakeButton(string text, EventHandler handler, int left, int top)
     {
@@ -78,6 +81,10 @@ public partial class Form1 : Form
         points.Clear();
         this.Invalidate();
         this.Text = "0 points";
+    }
+    private void Exit_Click(object? sender, EventArgs e)
+    {
+        this.Close();
     }
     private void Form1_Load(object sender, EventArgs e)
     {
@@ -159,5 +166,6 @@ public partial class Form1 : Form
         g.Clear(Color.Black);
         g.DrawLine(Pens.White, X, 0, X, HEIGHT);
         g.DrawLine(Pens.White, 0, Y, this.Width, Y);
+        g.DrawString("Click to add points, then click on the Bezier button to draw the curve.", this.Font, Brushes.Red, 100, 20);
     }
 }
